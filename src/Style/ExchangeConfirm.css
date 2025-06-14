@@ -1,0 +1,87 @@
+.exchange-confirm {
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.item-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.item-box {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.item-box:hover {
+  transform: scale(1.03);
+}
+
+.item-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.item-box h4 {
+  margin-bottom: 10px;
+  color: #2e7d32;
+  font-size: 18px;
+}
+
+.item-box p {
+  font-weight: 500;
+  font-size: 14px;
+  color: #444;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 42px;
+}
+
+.arrow {
+  font-size: 40px;
+  color: #ff6600;
+}
+
+.confirm-btn {
+  background-color: #2e7d32;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #1b5e20;
+}
+
+.loading {
+  padding: 50px;
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}

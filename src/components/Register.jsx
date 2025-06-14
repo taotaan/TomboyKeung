@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { auth } from '../firebase'; // import auth จากไฟล์ firebase config
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
-import '../Style/Auth.css';
 
 function Register() {
   const [email, setEmail] = useState('');

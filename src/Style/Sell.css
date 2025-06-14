@@ -1,116 +1,111 @@
 /* Sell.css */
+
 .sell-container {
-  max-width: 500px;
+  max-width: 800px;
   margin: 2rem auto;
-  padding: 2.5rem 2rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  font-family: 'Kanit', sans-serif, Arial, sans-serif;
-  color: #333;
+  padding: 2rem;
+  background-color: #fff8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Kanit', sans-serif;
+  color: #3e2d20;
 }
 
 .sell-container h2 {
+  color: #8B5E3C;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
-  margin-bottom: 1.8rem;
-  color: #2e7d32;
-  font-weight: 700;
-  font-size: 1.8rem;
-}
-.selected-tags {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-top: 5px;
-  color: #333;
-}
-.selected-tags li {
-  margin-bottom: 2px;
 }
 
 .sell-form label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #2e7d32;
-  font-size: 1rem;
-  margin-top: 1.3rem;
-  user-select: none;
+  color: #5a3e2b;
 }
 
 .sell-form input[type="text"],
 .sell-form input[type="number"],
-.sell-form textarea,
-.sell-form select {
+.sell-form select,
+.sell-form textarea {
   width: 100%;
-  padding: 0.6rem 0.9rem;
-  border-radius: 8px;
-  border: 1.8px solid #a5d6a7;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
-  outline: none;
-  font-family: inherit;
-  color: #2c2c2c;
-  background-color: #f9fff9;
-}
-
-.sell-form input[type="text"]:focus,
-.sell-form input[type="number"]:focus,
-.sell-form textarea:focus,
-.sell-form select:focus {
-  border-color: #388e3c;
-  background-color: #e8f5e9;
+  background-color: #fffefc;
+  color: #333;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .sell-form textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 120px;
 }
 
-.sell-form input[type="file"] {
-  margin-top: 0.3rem;
+.tags-checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #4a2f1c;
+  margin-bottom: 0.5rem;
+}
+
+.sell-form .tag-display span {
+  background-color: #e5d0ac;
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 0.9rem;
-  color: #444;
+  color: #3e2d20;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.sell-form button {
-  margin-top: 2rem;
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #2e7d32;
-  color: white;
-  font-weight: 700;
-  font-size: 1.15rem;
+.sell-form button[type="submit"] {
+  background-color: #e5d0ac;
+  color: #3e2d20;
+  padding: 0.8rem 1.5rem;
   border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sell-form button[type="submit"]:hover {
+  background-color: #d4ba94;
+  transform: scale(1.02);
+}
+
+.preview-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.preview-images img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(46,125,50,0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
+  border: 2px solid #e5d0ac;
+  transition: transform 0.2s;
 }
 
-.sell-form button:hover {
-  background-color: #1b5e20;
-  box-shadow: 0 6px 15px rgba(27,94,32,0.5);
+.preview-images img:hover {
+  transform: scale(1.05);
 }
 
-.sell-form select {
-  /* Custom arrow for select */
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='14' height='10' viewBox='0 0 14 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%23388E3C' stroke-width='2'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 12px 8px;
-  padding-right: 2.5rem;
-  cursor: pointer;
-}
-
-@media (max-width: 550px) {
-  .sell-container {
-    margin: 1rem;
-    padding: 1.5rem 1.3rem;
-  }
-  
-  .sell-form button {
-    font-size: 1rem;
-  }
+input[type="file"] {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
 }

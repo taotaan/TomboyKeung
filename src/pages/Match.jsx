@@ -3,7 +3,6 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase';
 import '../Style/Match.css';
 
-// นำ tagOptions จาก Sell มาใช้ตรงนี้เลย
 const tagOptions = [
   { value: 'street', label: 'สตรีท' },
   { value: 'vintage', label: 'วินเทจ' },
@@ -17,8 +16,9 @@ const tagOptions = [
 function Match() {
   const [selectedTag, setSelectedTag] = useState(null);
   const [products, setProducts] = useState([]);
+  const [height, setHeight] = useState(170); // ส่วนสูงเริ่มต้น
+  const [weight, setWeight] = useState(60);  // น้ำหนักเริ่มต้น
 
-  // ดึงสินค้าจาก Firestore ตาม tag ที่เลือก (หรือทั้งหมดถ้าไม่เลือก)
   useEffect(() => {
     const fetchProducts = async () => {
       let q;
@@ -37,48 +37,95 @@ function Match() {
   }, [selectedTag]);
 
   return (
-    <div className="match-container">
-      {/* ปุ่มแท็กแนวนอน */}
-      <div className="tag-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
-        <button
-          onClick={() => setSelectedTag(null)}
-          className={`tag-button ${selectedTag === null ? 'active' : ''}`}
-        >
-          ทั้งหมด
-        </button>
-        {tagOptions.map(({ value, label }) => (
+    <div className="match-wrapper">
+      <div className="match-container">
+
+        {/* เมนูด้านบน */}
+        <div className="menu-bar">
+          <button className="menu-button">ไซส์</button>
+          <button className="menu-button">หมวดหมู่</button>
+          <button className="menu-button">สไตล์</button>
+        </div>
+
+        {/* ปุ่มแท็ก */}
+        <div className="tag-list">
           <button
-            key={value}
-            onClick={() => setSelectedTag(value)}
-            className={`tag-button ${selectedTag === value ? 'active' : ''}`}
+            onClick={() => setSelectedTag(null)}
+            className={`tag-button ${selectedTag === null ? 'active' : ''}`}
           >
-            #{label}
+            ทั้งหมด
           </button>
-        ))}
+          {tagOptions.map(({ value, label }) => (
+            <button
+              key={value}
+              onClick={() => setSelectedTag(value)}
+              className={`tag-button ${selectedTag === value ? 'active' : ''}`}
+            >
+              #{label}
+            </button>
+          ))}
+        </div>
+
+        <h3>
+          สินค้าที่ตรงกับสไตล์:{' '}
+          {selectedTag
+            ? tagOptions.find((t) => t.value === selectedTag)?.label
+            : 'ทั้งหมด'}
+        </h3>
+
+        <div className="product-list">
+          {products.length > 0 ? (
+            products.map((product) => (
+              <div key={product.id} className="product-item">
+                <img
+                  src={product.imageUrls?.[0] || product.imageUrl}
+                  alt={product.name}
+                />
+                <div>
+                  <h4>{product.name}</h4>
+                  <p>ราคา: {product.price} บาท</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>ไม่มีสินค้าในหมวดนี้</p>
+          )}
+        </div>
       </div>
 
-      {/* แสดงชื่อ tag ที่เลือก */}
-      <h3>สินค้าที่ตรงกับสไตล์: {selectedTag ? tagOptions.find(t => t.value === selectedTag)?.label : 'ทั้งหมด'}</h3>
+      <div className="side-image">
+        <img src="/images/Male.png" alt="ชายผู้ชาย" />
 
-      {/* แสดงสินค้าด้านล่างเรียงแนวตั้ง */}
-      <div className="product-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {products.length > 0 ? (
-          products.map(product => (
-            <div key={product.id} className="product-item" style={{ display: 'flex', gap: '1rem', alignItems: 'center', border: '1px solid #ddd', padding: '0.5rem', borderRadius: '8px' }}>
-              <img
-                src={product.imageUrls?.[0] || product.imageUrl}
-                alt={product.name}
-                style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px' }}
-              />
-              <div>
-                <h4>{product.name}</h4>
-                <p>ราคา: {product.price} บาท</p>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>ไม่มีสินค้าในหมวดนี้</p>
-        )}
+        {/* สไลด์ด้านล่างรูป */}
+        <div className="slider-filters">
+          <div className="slider-group">
+            <label htmlFor="heightSlider">ส่วนสูง: {height} ซม.</label>
+            <input
+              type="range"
+              id="heightSlider"
+              min="140"
+              max="200"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+          </div>
+
+          <div className="slider-group">
+            <label htmlFor="weightSlider">น้ำหนัก: {weight} กก.</label>
+            <input
+              type="range"
+              id="weightSlider"
+              min="40"
+              max="120"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+          </div>
+          {/* ปุ่ม Submit */}
+    <button className="submit-button" onClick={() => alert(`ส่วนสูง: ${height} ซม.\nน้ำหนัก: ${weight} กก.`)}>
+      ยืนยันข้อมูล
+    </button>
+        </div>
       </div>
     </div>
   );

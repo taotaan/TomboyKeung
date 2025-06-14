@@ -1,0 +1,68 @@
+.exchange-container {
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.text-red {
+  color: red;
+  font-weight: bold;
+}
+.text-green {
+  color: green;
+  font-weight: bold;
+}
+.text-blue {
+  color: #00aaff;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin: 10px 0 30px;
+  color: #333;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.step {
+  flex: 1 1 250px;
+  border-right: 1px solid #ccc;
+  padding: 10px 20px;
+  max-width: 300px;
+}
+.step:last-child {
+  border-right: none;
+}
+
+.step h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.step h3 {
+  font-weight: bold;
+}
+
+.step p {
+  color: #555;
+}
+
+.start-button {
+  padding: 10px 30px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.start-button:hover {
+  background-color: #444;
+}

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import '../Style/ProductDetail.css';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState(null);
+  const navigate = useNavigate();
+  const auth = getAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -31,6 +34,15 @@ export default function ProductDetail() {
   if (!product) {
     return <div>กำลังโหลดข้อมูล...</div>;
   }
+
+  const handleBuyClick = () => {
+    if (!auth.currentUser) {
+      alert('กรุณาเข้าสู่ระบบก่อนซื้อสินค้า');
+      navigate('/login');
+    } else {
+      navigate(`/buy/${id}`);
+    }
+  };
 
   return (
     <div className="product-detail">
@@ -56,6 +68,17 @@ export default function ProductDetail() {
       <p>ราคา: {product.price} บาท</p>
       <p>รายละเอียด: {product.description}</p>
       <p>ขนาด: {product.size || 'ไม่ระบุ'}</p>
+
+      <div className="button-group">
+  <button className="action-button" onClick={handleBuyClick}>
+    ซื้อสินค้า
+  </button>
+
+  <Link to={`/exchange/select/${id}`} className="action-button">
+    แลกสินค้า
+  </Link>
+</div>
+
     </div>
   );
 }

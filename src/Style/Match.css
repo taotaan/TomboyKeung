@@ -1,29 +1,58 @@
-.match-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Kanit', sans-serif;
-  text-align: center;
-}
-
-.match-container {
+/* ส่วนหลักของหน้า */
+.match-wrapper {
+  display: flex;
+  align-items: flex-start; /* จัดให้ด้านบนตรงกัน */
+  gap: 2rem;
   padding: 1rem;
 }
+.menu-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #936a45;
+  margin-bottom: 1rem;
+}
 
-/* แท็กแสดงแนวนอน */
+.menu-button {
+  background-color: #9f7f4f;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #ddd;
+}
+
+/* เนื้อหาหลักซ้าย */
+.match-container {
+  flex: 1;
+  max-width: 800px;
+  padding: 1rem;
+  font-family: 'Kanit', sans-serif;
+}
+
+/* ปุ่มแท็ก */
 .tag-list {
   display: flex;
-  flex-wrap: wrap;  /* ถ้าเยอะจะขึ้นบรรทัดใหม่ */
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
 .tag-button {
- background-color: #eee;
+  font-size: 0.85rem;       /* ลดขนาดตัวอักษร */
+  padding: 0.3rem 0.6rem;   /* ลด padding */
+  margin: 0.2rem;           /* ช่องว่างระหว่างปุ่ม */
   border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: #eee;
+  color: #333;
   cursor: pointer;
-  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .tag-button:hover {
@@ -31,15 +60,17 @@
 }
 
 .tag-button.active {
-  background-color: #3498db;
-  color: white;
+  background-color: #666;
+  color: #fff;
 }
 
-/* สินค้าแสดงแนวตั้ง */
+
+/* รายการสินค้าแนวตั้ง */
 .product-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 520px;
 }
 
 .product-item {
@@ -47,13 +78,102 @@
   align-items: center;
   gap: 1rem;
   border: 1px solid #ddd;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-radius: 8px;
+  background-color: #fff;
+  max-width: 500px;
 }
 
-.product-image {
+.product-item img {
   width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+/* รูปผู้ชายด้านขวา */
+.side-image {
+  flex-shrink: 0;
+  align-self: flex-start; /* ให้อยู่ชิดด้านบน */
+  margin-top: 10rem;
+  margin-left: -10rem;
+}
+
+.side-image img {
+  width: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+.slider-filters {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* ========== SLIDER STYLE ========== */
+.slider-group input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #e0d3c0;
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.slider-group input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #936a45;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s;
+}
+
+.slider-group input[type='range']::-webkit-slider-thumb:hover {
+  background: #7b5430;
+}
+
+.slider-group input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #936a45;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-group input[type='range']::-moz-range-thumb:hover {
+  background: #7b5430;
+}
+
+/* แถบแสดงค่าตัวเลข */
+.slider-group label {
+  font-weight: bold;
+  color: #3e2d20;
+  font-size: 0.95rem;
+}
+
+
+.submit-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #936a45;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #7b5430;
 }

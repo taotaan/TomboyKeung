@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { db, storage } from '../firebase';
+import React, { useState, useEffect } from 'react'; 
+import { db, storage, auth } from '../firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { onAuthStateChanged } from 'firebase/auth';
 import '../Style/Sell.css';
 
 function Sell() {
@@ -12,12 +13,24 @@ function Sell() {
     category: '',
     size: '',
     tags: [],
-    images: [], // ไฟล์รูปภาพจริง
+    images: [],
   });
 
-  const [previewImages, setPreviewImages] = useState([]); // URL preview รูปภาพ
+  const [previewImages, setPreviewImages] = useState([]);
+  const [userId, setUserId] = useState(null); // ใช้เก็บ UID ของผู้ใช้งาน
 
-  // แผนที่แท็ก value => ชื่อภาษาไทย
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        setUserId(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const tagOptions = [
     { value: 'street', label: 'สตรีท' },
     { value: 'vintage', label: 'วินเทจ' },
@@ -33,12 +46,9 @@ function Sell() {
 
     if (name === 'images') {
       const selectedFiles = Array.from(files).slice(0, 10);
-      // รวมไฟล์เดิมกับไฟล์ใหม่ ไม่เกิน 10 ไฟล์
       const combinedFiles = [...formData.images, ...selectedFiles].slice(0, 10);
-
       setFormData({ ...formData, images: combinedFiles });
 
-      // สร้าง URL preview ของไฟล์ทั้งหมด
       const previewUrls = combinedFiles.map(file => URL.createObjectURL(file));
       setPreviewImages(previewUrls);
     } else if (name === 'tags') {
@@ -56,6 +66,12 @@ function Sell() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!userId) {
+      alert('⚠️ กรุณาเข้าสู่ระบบก่อนลงขายสินค้า');
+      return;
+    }
+
     try {
       const imageUrls = [];
       for (const image of formData.images) {
@@ -74,11 +90,12 @@ function Sell() {
         tags: formData.tags,
         imageUrls: imageUrls,
         createdAt: Timestamp.now(),
+        userId: userId, // 👈 ใส่ userId ผู้ขาย
       });
 
       alert('✅ ลงขายสำเร็จ!');
       setFormData({ name: '', price: '', description: '', category: '', size: '', tags: [], images: [] });
-      setPreviewImages([]); // ล้าง preview ด้วย
+      setPreviewImages([]);
     } catch (err) {
       console.error(err);
       alert('❌ เกิดข้อผิดพลาด');
@@ -123,7 +140,6 @@ function Sell() {
           ))}
         </div>
 
-        {/* แสดง tags ที่เลือกเป็นลิสต์แนวนอน */}
         {formData.tags.length > 0 ? (
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '1rem' }}>
             {formData.tags.map((tag, index) => {
@@ -168,7 +184,6 @@ function Sell() {
           required
         />
 
-        {/* แสดง preview รูปภาพ */}
         <div className="preview-images" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
           {previewImages.map((src, index) => (
             <img
