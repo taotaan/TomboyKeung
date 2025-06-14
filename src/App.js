@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import Exchange from './pages/Exchange';
 import Donate from './pages/Donate';
+import Sell from './pages/Sell';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/donate" element={<Donate />} />
+        <Route path="/sell" element={<Sell />} />
       </Routes>
     </Router>
   );

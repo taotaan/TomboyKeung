@@ -25,7 +25,7 @@ function Home() {
   <h1>♻️ เปลี่ยนเสื้อผ้าเก่าให้มีค่า</h1>
   <p>ลดขยะ สร้างรายได้ ร่วมสร้างเมืองใหม่สุรนารีให้น่าอยู่</p>
   <div className="btns">
-  <Link to="/products" className="sell">ลงขายสินค้า</Link>
+  <Link to="/sell" className="sell">ลงขายสินค้า</Link>
     <Link to="/exchange" className="sell">แลกเปลี่ยนเสื้อผ้า</Link>
   </div>
 </div>
