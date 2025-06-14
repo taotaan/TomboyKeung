@@ -17,6 +17,15 @@
   font-weight: 700;
   font-size: 1.8rem;
 }
+.selected-tags {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 5px;
+  color: #333;
+}
+.selected-tags li {
+  margin-bottom: 2px;
+}
 
 .sell-form label {
   display: block;

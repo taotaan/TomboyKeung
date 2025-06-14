@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../Style/Home.css';
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      // ดึงข้อมูลสินค้า 3 ตัวล่าสุด (เรียงตามวันที่สร้าง)
       const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'), limit(3));
       const querySnapshot = await getDocs(q);
       const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -17,6 +17,10 @@ function Home() {
     };
     fetchProducts();
   }, []);
+
+  const handleGenderClick = (gender) => {
+    navigate(`/products/${gender}`);
+  };
 
   return (
     <div className="home-container">
@@ -30,18 +34,17 @@ function Home() {
         </div>
       </div>
 
-      {/* New Products (ดึงจาก Firebase) */}
+      {/* New Products */}
       <section className="product-section">
         <h3>🆕 สินค้ามาใหม่</h3>
         <div className="product-grid">
           {products.length > 0 ? (
             products.map(item => (
               <div className="product-card" key={item.id}>
-                <img src={item.imageUrl} alt={item.name} />
+                <img src={item.imageUrl || item.imageUrls?.[0]} alt={item.name} />
                 <div className="product-info">
                   <h4>{item.name}</h4>
                   <p>ราคา: {item.price} บาท</p>
-                  {/* ตัวอย่างลิงก์ไปหน้ารายละเอียดสินค้า */}
                   <Link to={`/products/${item.id}`} className="detail-link">ดูรายละเอียด</Link>
                 </div>
               </div>
@@ -54,6 +57,31 @@ function Home() {
           <Link to="/products" className="see-all-link">ดูสินค้าทั้งหมด &raquo;</Link>
         </div>
       </section>
+
+      {/* ✅ Gender Selection */}
+      <div className="gender-selection">
+        <h3>เลือกเพศสำหรับการสวมใส่เสื้อผ้า</h3>
+        <div className="gender-options">
+          <div
+            className="gender-option"
+            onClick={() => handleGenderClick('male')}
+            role="button"
+            tabIndex={0}
+          >
+            <img src="/images/Male.png" alt="ชาย" />
+            <p>ชาย</p>
+          </div>
+          <div
+            className="gender-option"
+            onClick={() => handleGenderClick('female')}
+            role="button"
+            tabIndex={0}
+          >
+            <img src="/images/Female.png" alt="หญิง" />
+            <p>หญิง</p>
+          </div>
+        </div>
+      </div>
 
       {/* Eco Section */}
       <section className="eco-section">

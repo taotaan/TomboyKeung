@@ -11,6 +11,7 @@ export default function ProductDetail() {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [fitResult, setFitResult] = useState('');
+  const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -18,7 +19,11 @@ export default function ProductDetail() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        setProduct(docSnap.data());
+        const data = docSnap.data();
+        setProduct(data);
+        if (data.imageUrls && data.imageUrls.length > 0) {
+          setMainImage(data.imageUrls[0]); // รูปหลักเริ่มต้น
+        }
       } else {
         console.log("ไม่พบสินค้า");
       }
@@ -49,7 +54,6 @@ export default function ProductDetail() {
           result = 'อาจคับเกินไป (ชาย)';
         }
       }
-      // เพิ่ม size อื่นได้ตามต้องการ
     } else if (selectedGender === 'female') {
       if (size === 'M') {
         if (h >= 155 && h <= 165 && w >= 45 && w <= 60) {
@@ -70,11 +74,29 @@ export default function ProductDetail() {
   return (
     <div className="product-detail">
       <h2>{product.name}</h2>
-      <img src={product.imageUrl} alt={product.name} />
+
+      {mainImage && (
+        <div className="product-images">
+          <img className="main-image" src={mainImage} alt="main" />
+          <div className="thumbnail-row">
+            {product.imageUrls?.map((url, idx) => (
+              <img
+                key={idx}
+                src={url}
+                alt={`thumbnail-${idx}`}
+                className={`thumbnail ${mainImage === url ? 'active' : ''}`}
+                onClick={() => setMainImage(url)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       <p>ราคา: {product.price} บาท</p>
       <p>รายละเอียด: {product.description}</p>
       <p>ขนาด: {product.size || 'ไม่ระบุ'}</p>
 
+      {/* ส่วนเลือกเพศ */}
       <div className="gender-selection">
         <h3>เลือกเพศสำหรับการสวมใส่เสื้อผ้า</h3>
         <div className="gender-options">
@@ -87,7 +109,6 @@ export default function ProductDetail() {
             <img src="/images/Male.png" alt="ชาย" />
             <p>ชาย</p>
           </div>
-
           <div
             className={`gender-option ${selectedGender === 'female' ? 'selected' : ''}`}
             onClick={() => setSelectedGender('female')}
@@ -105,6 +126,7 @@ export default function ProductDetail() {
         )}
       </div>
 
+      {/* กรอกส่วนสูงน้ำหนัก */}
       <div className="body-inputs">
         <h3>กรอกสัดส่วนร่างกายของคุณ</h3>
         <label>
@@ -127,7 +149,7 @@ export default function ProductDetail() {
           />
         </label>
         <br />
-        <button onClick={checkFit}>ตรวจสอบความพอดี</button>
+        <button onClick={checkFit}>Let’s START</button>
         {fitResult && <p><strong>ผลลัพธ์:</strong> {fitResult}</p>}
       </div>
     </div>
