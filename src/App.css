@@ -1,3 +1,4 @@
+/* App.css*/
 .App {
   text-align: center;
 }
@@ -5,6 +6,72 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+/* กำหนดขนาดและจัดกึ่งกลาง container หลักของแต่ละหน้า */
+.layout-container,
+.home-container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  background-color: #fff;
+  min-height: calc(100vh - 150px); /* ลบ header + footer */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #333;
+}
+
+/* กำหนดหัวข้อให้สีเขียวธีมหลัก */
+.layout-container h2,
+.home-container h1,
+.home-container h3 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+/* ตัวอย่างจัดกริดสินค้า */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 1rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  gap: 1rem;
+}
+
+/* ปรับรูปสินค้าให้เต็มพื้นที่และสวยงาม */
+.products .item img,
+.product-grid .product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ปุ่มในหน้า Home */
+.home-container .btns {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.home-container .sell {
+  background-color: #2e7d32;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.home-container .sell:hover {
+  background-color: #1b4d1b;
 }
 
 @media (prefers-reduced-motion: no-preference) {

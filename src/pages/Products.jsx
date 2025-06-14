@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../firebase';
+import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import '../Style/Products.css';
 
 export default function Products() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, 'products'));
+      const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setProducts(items);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="section">
-      <h2>สินค้าใหม่</h2>
-      <div className="products">
-        <div className="item">
-          <img src="https://via.placeholder.com/150" alt="สินค้า" />
-          <p>เสื้อเบอร์ 1<br />ราคา 100 บาท</p>
-        </div>
-        <div className="item">
-          <img src="https://via.placeholder.com/150" alt="สินค้า" />
-          <p>เสื้อเบอร์ 2<br />ราคา 100 บาท</p>
+    
+    <div className="layout-container">
+      <div className="section">
+        <h2>สินค้าใหม่</h2>
+        <div className="products">
+          {products.map((item) => (
+            <div className="item" key={item.id}>
+              <img src={item.imageUrl} alt={item.name} />
+              <p>{item.name}<br />ราคา {item.price} บาท</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
+
   );
 }

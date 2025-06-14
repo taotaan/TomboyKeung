@@ -36,7 +36,7 @@ function Sell() {
       });
 
       alert('✅ ลงขายสำเร็จ!');
-      setFormData({ name: '', price: '', description: '', image: null });
+      setFormData({ name: '', price: '', description: '', category: '', image: null });
     } catch (err) {
       console.error(err);
       alert('❌ เกิดข้อผิดพลาด');

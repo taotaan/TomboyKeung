@@ -1,0 +1,431 @@
+/* Products.css */
+.header,
+.footer {
+   height: 50px; /* กำหนดความสูง footer */
+  flex-shrink: 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Kanit', sans-serif;
+  background-color: #f9f9f9;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-height: 100vh; /* เต็มหน้าจอแน่นอน */
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #2e7d32;
+}
+.layout-container {
+  max-width: 1200px; /* กำหนดขนาดสูงสุด */
+  width: 100%;       /* เต็มความกว้างที่จำกัด */
+  margin: 0 auto;    /* กึ่งกลาง */
+  flex: 1 0 auto;    /* ให้ขยายเต็มพื้นที่ที่เหลือ */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+main.main-content {
+  min-height: calc(100vh - 140px); /* ลบความสูง header+footer เพื่อให้เต็มหน้าจอ */
+}
+
+
+main {
+  flex: 1;
+  width: 100%;
+}
+.section {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section h2 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  border-bottom: 3px solid #2e7d32;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.item {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 260px;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.item p {
+  font-weight: 600;
+  color: #2e7d32;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #2e7d32;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.footer {
+  flex-shrink: 0; /* ไม่ให้ footer ยุบ */
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: auto; /* ดัน footer ลงล่าง */
+  width: 100%;
+}
+.btn:hover {
+  background-color: #1b5e20;
+}
+.layout-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.header {
+    height: 70px; /* หรือความสูงที่เหมาะสม */
+  flex-shrink: 0; /* ไม่ยุบ */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px; /* กำหนดความสูง header */
+  flex-shrink: 0;
+}
+main.layout-container {
+  flex: 1 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.nav-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+}
+.nav-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.header h1 {
+  font-size: 1.6rem;
+  color: #2e7d32;
+  margin: 0;
+}
+.header nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.header nav a:hover {
+  color: #2e7d32;
+}
+.header nav a.active {
+  color: #2e7d32;
+  font-weight: bold;
+}
+.header .auth-links {
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+.header .auth-links a {
+  text-decoration: none;
+  color: #2e7d32;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.header .auth-links a:hover {
+  background-color: #e0f2f1;
+}
+.header .auth-links .register-btn {
+  background-color: #2e7d32;
+  color: white;
+}
+.header .auth-links .register-btn:hover {
+  background-color: #1b5e20;
+}
+.header .auth-links .login-btn {
+  background-color: #fff;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+.header .auth-links .login-btn:hover {
+  background-color: #e0f2f1;
+  color: #2e7d32;
+}
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background-color: #e7f9ec;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgb(46 125 50 / 0.1);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2e7d32;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.auth-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-right: 1rem;
+}
+.auth-links a {
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.auth-links a:hover {
+  background-color: #e0f2f1;
+}
+.auth-links .register-btn {
+  background-color: #2e7d32;
+  color: white;
+}
+.auth-links .register-btn:hover {
+  background-color: #1b5e20;
+}
+.auth-links .login-btn {
+  background-color: #fff;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.nav-container {
+  display: flex;
+  gap: 1.5rem;
+}
+.header h1 {
+  font-size: 1.6rem;
+  color: #2e7d32;
+  margin: 0;
+}
+.header nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.header nav a:hover {
+  color: #2e7d32;
+}
+.header nav a.active {
+  color: #2e7d32;
+  font-weight: bold;
+}
+.header .auth-links {
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+.header .auth-links a {
+  text-decoration: none;
+  color: #2e7d32;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.header .auth-links a:hover {
+  background-color: #e0f2f1;
+}
+.header .auth-links .register-btn {
+  background-color: #2e7d32;
+  color: white;
+}
+.header .auth-links .register-btn:hover {
+  background-color: #1b5e20;
+}
+.header .auth-links .login-btn {
+  background-color: #fff;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+.header .auth-links .login-btn:hover {
+  background-color: #e0f2f1;
+  color: #2e7d32;
+}
+/* Products.css */
+.product-card {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+.product-card h4 {
+  margin: 0.5rem 0;
+  color: #2e7d32;
+  font-size: 1.2rem;
+}
+.product-card p {
+  font-weight: 600;
+  color: #444;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+.product-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #2e7d32;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.product-card a:hover {
+  background-color: #1b5e20;
+}
+/* Products.css */
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .auth-links {
+    margin-right: 0;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .header nav a {
+    font-size: 0.9rem;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+}
