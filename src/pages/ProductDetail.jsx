@@ -7,7 +7,10 @@ import '../Style/ProductDetail.css';
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [selectedGender, setSelectedGender] = useState(null); // เพศที่เลือก (male หรือ female)
+  const [selectedGender, setSelectedGender] = useState(null);
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [fitResult, setFitResult] = useState('');
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -24,6 +27,44 @@ export default function ProductDetail() {
     fetchProduct();
   }, [id]);
 
+  const checkFit = () => {
+    const h = parseInt(height);
+    const w = parseInt(weight);
+
+    if (isNaN(h) || isNaN(w) || !selectedGender) {
+      setFitResult('กรุณากรอกส่วนสูง น้ำหนัก และเลือกเพศให้ครบ');
+      return;
+    }
+
+    let result = 'ยังไม่มีเกณฑ์สำหรับขนาดนี้';
+    const size = product.size;
+
+    if (selectedGender === 'male') {
+      if (size === 'M') {
+        if (h >= 165 && h <= 175 && w >= 60 && w <= 75) {
+          result = 'เหมาะสมกับคุณ (ชาย - พอดี)';
+        } else if (h < 165 || w < 60) {
+          result = 'อาจหลวมเล็กน้อย (ชาย)';
+        } else {
+          result = 'อาจคับเกินไป (ชาย)';
+        }
+      }
+      // เพิ่ม size อื่นได้ตามต้องการ
+    } else if (selectedGender === 'female') {
+      if (size === 'M') {
+        if (h >= 155 && h <= 165 && w >= 45 && w <= 60) {
+          result = 'เหมาะสมกับคุณ (หญิง - พอดี)';
+        } else if (h < 155 || w < 45) {
+          result = 'อาจหลวมเล็กน้อย (หญิง)';
+        } else {
+          result = 'อาจคับเกินไป (หญิง)';
+        }
+      }
+    }
+
+    setFitResult(result);
+  };
+
   if (!product) return <div>กำลังโหลดข้อมูล...</div>;
 
   return (
@@ -32,6 +73,7 @@ export default function ProductDetail() {
       <img src={product.imageUrl} alt={product.name} />
       <p>ราคา: {product.price} บาท</p>
       <p>รายละเอียด: {product.description}</p>
+      <p>ขนาด: {product.size || 'ไม่ระบุ'}</p>
 
       <div className="gender-selection">
         <h3>เลือกเพศสำหรับการสวมใส่เสื้อผ้า</h3>
@@ -41,10 +83,8 @@ export default function ProductDetail() {
             onClick={() => setSelectedGender('male')}
             role="button"
             tabIndex={0}
-            onKeyDown={e => { if (e.key === 'Enter') setSelectedGender('male') }}
           >
-            <img src="/images/M
-            ale.png" alt="ชาย" />
+            <img src="/images/Male.png" alt="ชาย" />
             <p>ชาย</p>
           </div>
 
@@ -53,13 +93,42 @@ export default function ProductDetail() {
             onClick={() => setSelectedGender('female')}
             role="button"
             tabIndex={0}
-            onKeyDown={e => { if (e.key === 'Enter') setSelectedGender('female') }}
           >
             <img src="/images/Female.png" alt="หญิง" />
             <p>หญิง</p>
           </div>
         </div>
-        {selectedGender && <p>คุณเลือกเพศ: {selectedGender === 'male' ? 'ชาย' : 'หญิง'}</p>}
+        {selectedGender && (
+          <div className="gender-note">
+            <p><strong>หมายเหตุ:</strong> การคำนวณจะอิงตามสัดส่วนโดยเฉลี่ยของเพศ {selectedGender === 'male' ? 'ชาย' : 'หญิง'} เพื่อความแม่นยำ</p>
+          </div>
+        )}
+      </div>
+
+      <div className="body-inputs">
+        <h3>กรอกสัดส่วนร่างกายของคุณ</h3>
+        <label>
+          ส่วนสูง (cm):
+          <input
+            type="number"
+            value={height}
+            onChange={e => setHeight(e.target.value)}
+            placeholder="เช่น 165"
+          />
+        </label>
+        <br />
+        <label>
+          น้ำหนัก (kg):
+          <input
+            type="number"
+            value={weight}
+            onChange={e => setWeight(e.target.value)}
+            placeholder="เช่น 55"
+          />
+        </label>
+        <br />
+        <button onClick={checkFit}>ตรวจสอบความพอดี</button>
+        {fitResult && <p><strong>ผลลัพธ์:</strong> {fitResult}</p>}
       </div>
     </div>
   );

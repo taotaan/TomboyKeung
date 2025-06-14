@@ -10,6 +10,7 @@ function Sell() {
     price: '',
     description: '',
     category: '',
+    size: '',
     image: null,
   });
 
@@ -33,12 +34,13 @@ function Sell() {
         price: parseFloat(formData.price),
         description: formData.description,
         category: formData.category,
+        size: formData.size,
         imageUrl: imageUrl,
         createdAt: Timestamp.now(),
       });
 
       alert('✅ ลงขายสำเร็จ!');
-      setFormData({ name: '', price: '', description: '', category: '', image: null });
+      setFormData({ name: '', price: '', description: '', category: '', size: '', image: null });
     } catch (err) {
       console.error(err);
       alert('❌ เกิดข้อผิดพลาด');
@@ -67,10 +69,19 @@ function Sell() {
           <option value="shoe">รองเท้า</option>
         </select>
 
+        <label>ขนาดสินค้า:</label>
+        <select name="size" value={formData.size} onChange={handleChange} required>
+          <option value="">-- เลือกขนาด --</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+
         <label>รูปภาพ:</label>
         <input type="file" name="image" accept="image/*" onChange={handleChange} required />
 
-        <button type="submit">ลงขาย</button>
+        <button type="submit">ขายสินค้า</button>
       </form>
     </div>
   );

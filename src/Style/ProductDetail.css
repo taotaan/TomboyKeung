@@ -77,26 +77,38 @@
 }
 
 
+/* การเลือกเพศ */
 .gender-selection {
-  margin-top: 40px;
+  margin-top: 32px;
   text-align: center;
+}
+
+.gender-selection h3 {
+  font-size: 1.3rem;
+  color: #333;
 }
 
 .gender-options {
   display: flex;
+  gap: 32px;
   justify-content: center;
-  gap: 40px;
-  margin-top: 20px;
+  margin: 16px 0;
 }
 
 .gender-option {
   cursor: pointer;
+  text-align: center;
   border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 10px;
-  width: 120px;
-  user-select: none;
-  transition: border-color 0.3s ease;
+  border-radius: 16px;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.gender-option:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .gender-option.selected {
@@ -105,13 +117,88 @@
 }
 
 .gender-option img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+  width: 80px;
+  height: auto;
+  margin-bottom: 8px;
 }
 
 .gender-option p {
-  margin-top: 8px;
-  font-weight: 600;
-  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+  color: #333;
 }
+
+/* หมายเหตุหลังเลือกเพศ */
+.gender-note {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* ส่วนกรอกสัดส่วนร่างกาย */
+.body-inputs {
+  margin-top: 32px;
+  background-color: #f8f9fa;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.body-inputs h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.body-inputs label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: #444;
+}
+
+.body-inputs input {
+  margin-left: 10px;
+  padding: 8px 10px;
+  width: 160px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.body-inputs input:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+
+/* ปุ่มตรวจสอบ */
+.body-inputs button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.body-inputs button:hover {
+  background-color: #1565c0;
+}
+
+/* แสดงผลลัพธ์ */
+.body-inputs p {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #222;
+}
+
