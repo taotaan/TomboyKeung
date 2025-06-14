@@ -252,6 +252,123 @@ body {
   color: #005499;
   text-decoration: underline;
 }
+.gender-selection h3 {
+  font-size: 5.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff416c, #ff4b2b, #ffcc33);
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s ease infinite;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  user-select: none;
+}
+.gender-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.gender-option {
+  text-align: center;
+  cursor: pointer;
+  padding: 20px;
+  background-color: #ffffff; /* ✅ พื้นหลังสีขาว */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงานิดหน่อย */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 400px; 
+  height: 400px;
+  padding: 24px;
+  height: 400px; /* กำหนดความสูงคงที่ */
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.gender-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.gender-option {
+  text-align: center;
+  cursor: pointer;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 400px; 
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* แก้ไขเป็น space-between */
+  align-items: center;
+}
+
+.gender-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.gender-option img {
+  width: 100%;
+  height: calc(100% - 60px); /* ใช้พื้นที่ทั้งหมดลบพื้นที่ของข้อความ */
+  object-fit: cover;          /* ใช้ cover เพื่อให้รูปเต็มพื้นที่ */
+  border-radius: 12px;
+  flex: 1;                    /* ให้รูปขยายเต็มพื้นที่ที่เหลือ */
+}
+
+.gender-option p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 10px 0 0 0;    /* ลดระยะห่างด้านบน */
+  color: #333;
+  flex-shrink: 0;        /* ไม่ให้ข้อความหดเล็กลง */
+}
+
+.start-button {
+  background: linear-gradient(135deg, #38b000, #70e000);
+  color: white;
+  padding: 0.8rem 2.2rem;
+  font-size: 1.0rem;
+  font-weight: 400;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(56, 176, 0, 0.5);
+  transition: background 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.start-button:hover,
+.start-button:focus {
+  background: linear-gradient(135deg, #2d8b00, #56bd00);
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(45, 139, 0, 0.7);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
+.start-button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #e0e0e0;
+}
 
 /* Eco Section */
 .eco-section {

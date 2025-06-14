@@ -8,8 +8,8 @@ import Exchange from './pages/Exchange';
 import Donate from './pages/Donate';
 import Sell from './pages/Sell';
 import ProductDetail from './pages/ProductDetail';
-import MaleProducts from './pages/MaleProducts';
-import FemaleProducts from './pages/FemaleProducts';
+import Match from './pages/Match'; 
+
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           <Route path="donate" element={<Donate />} />
           <Route path="sell" element={<Sell />} />
           <Route path="products/:id" element={<ProductDetail />} />
-          <Route path="products/male" element={<MaleProducts />} />
-<Route path="products/female" element={<FemaleProducts />} />
+        <Route path="match" element={<Match />} />
+
 
         </Route>
       </Routes>

@@ -1,0 +1,79 @@
+/* Match.css */
+.match-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Kanit', sans-serif;
+}
+
+.match-container h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.match-container p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 32px;
+}
+
+/* เพศชาย/หญิง */
+.gender-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.gender-option {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gender-option:hover {
+  transform: scale(1.05);
+}
+
+.gender-option img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  padding: 8px;
+  transition: border 0.3s;
+}
+
+.gender-option:hover img {
+  border-color: #1976d2;
+}
+
+.gender-option p {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* ปุ่มเริ่ม */
+.start-button {
+  padding: 14px 28px;
+  font-size: 18px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #388e3c;
+}

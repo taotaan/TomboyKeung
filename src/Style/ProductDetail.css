@@ -8,17 +8,6 @@
   font-family: 'Kanit', sans-serif;
 }
 
-.product-detail img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin-bottom: 24px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-
-
 .product-detail h2 {
   font-size: 28px;
   margin-bottom: 16px;
@@ -53,6 +42,7 @@
 .back-button:hover {
   background-color: #0d47a1;
 }
+
 /* สำหรับภาพสินค้าทั้งหมด ให้ควบคุมขนาดเท่ากัน */
 .item img,
 .product-card img {
@@ -65,160 +55,32 @@
   display: block;
 }
 
-.product-detail img {
-  width: 100%;
-  max-width: 480px;
-  height: 320px;
-  object-fit: contain; /* แสดงรูปเต็ม ไม่ตัด */
-  border-radius: 12px;
-  margin: 0 auto 24px;
-  display: block;
-  /* ไม่จำเป็นต้องใช้ transition ถ้าไม่มี hover effect */
-}
-
-
-/* การเลือกเพศ */
-.gender-selection {
-  margin-top: 32px;
-  text-align: center;
-}
-
-.gender-selection h3 {
-  font-size: 1.3rem;
-  color: #333;
-}
-
-.gender-options {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-  margin: 16px 0;
-}
-
-.gender-option {
-  cursor: pointer;
-  text-align: center;
-  border: 2px solid transparent;
-  border-radius: 16px;
-  padding: 12px 16px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.gender-option:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.gender-option.selected {
-  border-color: #1976d2;
-  background-color: #e3f2fd;
-}
-
-.gender-option img {
-  width: 80px;
-  height: auto;
-  margin-bottom: 8px;
-}
-
-.gender-option p {
-  margin: 0;
-  font-weight: bold;
-  color: #333;
-}
-
-/* หมายเหตุหลังเลือกเพศ */
-.gender-note {
-  margin-top: 12px;
-  font-size: 0.95rem;
-  color: #666;
-}
-
-/* ส่วนกรอกสัดส่วนร่างกาย */
-.body-inputs {
-  margin-top: 32px;
-  background-color: #f8f9fa;
-  padding: 24px;
-  border-radius: 16px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.body-inputs h3 {
-  text-align: center;
-  margin-bottom: 16px;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.body-inputs label {
-  display: block;
-  margin-bottom: 16px;
-  font-weight: 500;
-  color: #444;
-}
-
-.body-inputs input {
-  margin-left: 10px;
-  padding: 8px 10px;
-  width: 160px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
-}
-
-.body-inputs input:focus {
-  border-color: #1976d2;
-  outline: none;
-}
-
-/* ปุ่มตรวจสอบ */
-.body-inputs button {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.body-inputs button:hover {
-  background-color: #1565c0;
-}
-
-/* แสดงผลลัพธ์ */
-.body-inputs p {
-  margin-top: 16px;
-  text-align: center;
-  font-size: 1.1rem;
-  color: #222;
-}
+/* รูปหลัก */
 .product-images {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 }
 
 .main-image {
-  width: 300px;
+  width: 100%;
+  max-width: 500px;
   height: auto;
-  border-radius: 10px;
-  margin-bottom: 10px;
   object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* รูปย่อยแนวนอน */
 .thumbnail-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 5px 0;
 }
 
 .thumbnail {
@@ -229,9 +91,37 @@
   border: 2px solid transparent;
   cursor: pointer;
   transition: border 0.2s;
+  flex-shrink: 0;
 }
 
 .thumbnail.active {
-  border-color: #007bff;
+  border-color: #fc0303;
 }
 
+/* แสดงผลลัพธ์ */
+.body-inputs p {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  .main-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+}

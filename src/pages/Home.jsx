@@ -18,9 +18,7 @@ function Home() {
     fetchProducts();
   }, []);
 
-  const handleGenderClick = (gender) => {
-    navigate(`/products/${gender}`);
-  };
+ 
 
   return (
     <div className="home-container">
@@ -59,29 +57,41 @@ function Home() {
       </section>
 
       {/* ✅ Gender Selection */}
-      <div className="gender-selection">
-        <h3>เลือกเพศสำหรับการสวมใส่เสื้อผ้า</h3>
-        <div className="gender-options">
-          <div
-            className="gender-option"
-            onClick={() => handleGenderClick('male')}
-            role="button"
-            tabIndex={0}
-          >
-            <img src="/images/Male.png" alt="ชาย" />
-            <p>ชาย</p>
-          </div>
-          <div
-            className="gender-option"
-            onClick={() => handleGenderClick('female')}
-            role="button"
-            tabIndex={0}
-          >
-            <img src="/images/Female.png" alt="หญิง" />
-            <p>หญิง</p>
-          </div>
-        </div>
-      </div>
+<div className="gender-selection">
+  <img 
+    src="/images/match.png" 
+    alt="Find Your Match title"
+    style={{ 
+      width: '100%',
+      maxWidth: '500px',
+      margin: '0 auto', 
+      display: 'block'
+    }}
+  />
+
+  <div className="gender-options">
+    <div className="gender-option">
+      <img src="/images/Male.png" alt="ชาย" />
+      <p>ผู้ชาย</p>
+    </div>
+    <div className="gender-option">
+      <img src="/images/Female.png" alt="หญิง" />
+      <p>ผู้หญิง</p>
+    </div>
+  </div>
+
+  {/* 🔘 ปุ่มไปหน้า match */}
+  <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+    <button
+      onClick={() => navigate('/match')}
+      className="start-button"
+      style={{ marginBottom: '20px' }}
+    >
+      Let’s START
+    </button>
+  </div>
+</div>
+
 
       {/* Eco Section */}
       <section className="eco-section">

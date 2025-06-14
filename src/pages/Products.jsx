@@ -32,27 +32,28 @@ export default function Products() {
         <h2>สินค้าใหม่</h2>
         <div className="products">
           {products.map((item) => (
-            <div className="item" key={item.id}>
+  <div className="item" key={item.id}>
 
-              <Link to={`/products/${item.id}`}>
-                <img src={item.imageUrl} alt={item.name} />
-              </Link>
+    <Link to={`/products/${item.id}`}>
+      {/* แสดงรูปแรกจาก imageUrls */}
+      <img src={item.imageUrls?.[0] || ''} alt={item.name} />
+    </Link>
 
-              {/* ปุ่มถูกใจมุมขวาบนของรูป */}
-              <button
-                className={`like-button ${likedItems[item.id] ? 'liked' : ''}`}
-                onClick={() => toggleLike(item.id)}
-                aria-pressed={likedItems[item.id] || false}
-                title={likedItems[item.id] ? 'ยกเลิกถูกใจ' : 'ถูกใจ'}
-              >
-                {likedItems[item.id] ? '❤️' : '♡'}
-              </button>
+    <button
+      className={`like-button ${likedItems[item.id] ? 'liked' : ''}`}
+      onClick={() => toggleLike(item.id)}
+      aria-pressed={likedItems[item.id] || false}
+      title={likedItems[item.id] ? 'ยกเลิกถูกใจ' : 'ถูกใจ'}
+    >
+      {likedItems[item.id] ? '❤️' : '♡'}
+    </button>
 
-              <Link to={`/products/${item.id}`}>
-                <p>{item.name}<br />ราคา {item.price} บาท</p>
-              </Link>
-            </div>
-          ))}
+    <Link to={`/products/${item.id}`}>
+      <p>{item.name}<br />ราคา {item.price} บาท</p>
+    </Link>
+  </div>
+))}
+
         </div>
       </div>
     </div>
