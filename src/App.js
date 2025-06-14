@@ -11,6 +11,8 @@ import ProductDetail from './pages/ProductDetail';
 import Match from './pages/Match'; 
 
 
+
+
 function App() {
   return (
     <Router>
@@ -23,6 +25,7 @@ function App() {
           <Route path="sell" element={<Sell />} />
           <Route path="products/:id" element={<ProductDetail />} />
         <Route path="match" element={<Match />} />
+        
 
 
         </Route>
