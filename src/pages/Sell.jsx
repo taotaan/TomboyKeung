@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { db, storage } from '../firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import '../Style/Sell.css'
+import '../Style/Sell.css';
 
 function Sell() {
   const [formData, setFormData] = useState({
     name: '',
     price: '',
     description: '',
+    category: '',
     image: null,
   });
 
@@ -31,6 +32,7 @@ function Sell() {
         name: formData.name,
         price: parseFloat(formData.price),
         description: formData.description,
+        category: formData.category,
         imageUrl: imageUrl,
         createdAt: Timestamp.now(),
       });
@@ -55,6 +57,15 @@ function Sell() {
 
         <label>รายละเอียดสินค้า:</label>
         <textarea name="description" value={formData.description} onChange={handleChange}></textarea>
+
+        <label>หมวดหมู่สินค้า:</label>
+        <select name="category" value={formData.category} onChange={handleChange} required>
+          <option value="">-- เลือกหมวดหมู่ --</option>
+          <option value="shirt">เสื้อ</option>
+          <option value="trousers">กางเกง</option>
+          <option value="hat">หมวก</option>
+          <option value="shoe">รองเท้า</option>
+        </select>
 
         <label>รูปภาพ:</label>
         <input type="file" name="image" accept="image/*" onChange={handleChange} required />

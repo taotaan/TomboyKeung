@@ -23,13 +23,13 @@ export default function Products() {
       <div className="section">
         <h2>สินค้าใหม่</h2>
         <div className="products">
-          {products.map((item) => (
-            <div className="item" key={item.id}>
-              <img src={item.imageUrl} alt={item.name} />
-              <p>{item.name}<br />ราคา {item.price} บาท</p>
-            </div>
-          ))}
-        </div>
+  {products.map((item) => (
+    <Link to={`/products/${item.id}`} className="item" key={item.id}>
+      <img src={item.imageUrl} alt={item.name} />
+      <p>{item.name}<br />ราคา {item.price} บาท</p>
+    </Link>
+  ))}
+</div>
       </div>
     </div>
 
